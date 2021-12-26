@@ -5,7 +5,7 @@
     <!-- 整个注册盒子 -->
     <div class="box">
         <p class="text">您好，欢迎回来！</p>
-        <button class="btn" id="logout_btn" @click="exit_login">退出登陆</button>
+        <button class="btn" id="logout_btn" @click="exit_login">退出登录</button>
         <div class="box-content bg"></div>
     </div>
 </div>
