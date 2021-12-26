@@ -40,7 +40,6 @@ export default {
     border-radius: 5px;
     background-size: auto;
     background-repeat: repeat-x;
-    background-position:center;
 }
 .box-content.bg:hover {
     transform: translateY(-3px);

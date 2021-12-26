@@ -20,6 +20,7 @@
 .box-content.bg {
     background-image: url('../img/Christmas_Trees.png');
     background-size: cover;
+    background-position: center;
     font-family: sans-serif;
     width: 590px;
     transition: .3s ease-in-out;
