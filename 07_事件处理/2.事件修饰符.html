@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="cn">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>事件修饰符</title>
+	<script type="text/javascript" src="../js/vue.js"></script>
+	<link rel="icon" type="image/x-icon" href="../source/logo.png">
+	<style>
+		* {
+			margin-top: 20px;
+		}
+
+		.demo1 {
+			height: 50px;
+			background-color: skyblue;
+		}
+
+		.box1 {
+			padding: 5px;
+			background-color: skyblue;
+		}
+
+		.box2 {
+			padding: 5px;
+			background-color: orange;
+		}
+
+		.list {
+			width: 200px;
+			height: 200px;
+			background-color: peru;
+			overflow: auto;
+		}
+
+		li {
+			height: 100px;
+		}
+	</style>
+</head>
+
+<body>
+	<!--
+		Vue中的事件修饰符：
+			1.prevent：阻止默认事件（常用）；
+			2.stop：阻止事件冒泡（常用）；
+			3.once：事件只触发一次（常用）；
+			4.capture：使用事件的捕获模式；
+			5.self：只有event.target是当前操作的元素时才触发事件；
+			6.passive：事件的默认行为立即执行，无需等待事件回调执行完毕；
+     -->
+	<div id="root">
+		<h1>我在{{name}}学习Vue</h1>
+		<a :href="site" target="_blank" @click="showInfoFix">点我提示信息1</a>
+		<br />
+
+		<!-- 阻止默认事件（常用） -->
+		<!-- 方法2：通过调用Vue自带的事件修饰符阻止默认行为 -->
+		<a :href="site" target="_blank" @click.prevent="showInfo">点我提示信息2(阻止打开网页)</a>
+		<br />
+
+		<!-- 阻止事件冒泡（常用） -->
+		<div class="demo1" @click="showInfo">
+			<button @click.stop="showInfo">点我提示信息(阻止冒泡)</button>
+		</div>
+
+		<!-- 事件只触发一次（常用） -->
+		<button @click.once="showInfo">点我提示信息(只提示一次)</button>
+		<br />
+
+		<!-- 使用事件的捕获模式(与冒泡恰好相反) -->
+		<div class="box1" @click.capture="showMsg(1)">
+			我是div1
+			<div class="box2" @click="showMsg(2)">我是div2</div>
+		</div>
+
+		<!-- 只有event.target是当前操作的元素时才触发事件 -->
+		<div class="demo1" @click.self="showInfo">
+			<button @click="showInfo">点我提示信息(阻止冒泡)</button>
+		</div>
+
+		<!-- 事件的默认行为立即执行，无需等待事件回调执行完毕 -->
+		<!-- 滚动幅度触发(鼠标滚轮滚动一下算作一次) -->
+		<ul class="list" @wheel.passive="wheelDemo">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+		</ul>
+		<!-- 滚动像素触发(要求移动了一个像素才能算作一次) -->
+		<ul class="list" @scroll="scrollDemo">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+		</ul>
+
+	</div>
+</body>
+
+<script type="text/javascript">
+	Vue.config.productionTip = false
+
+	const vm = new Vue({
+		el: '#root',
+		data: {
+			name: 'B站',
+			site: 'https://blog.cworld.top'
+		},
+		methods: {
+			showInfo(event) {
+				// alert('同学你好')
+				console.log(event.target);
+			},
+			showInfoFix(event) {
+				event.preventDefault(); //方法1：通过回调event事件阻止默认行为
+				alert('同学你好')
+			},
+			showMsg(msg) {
+				console.log(msg);
+			},
+			scrollDemo() {
+				for (let i = 0; i < 100000; i++) {
+					console.log('@');
+				}
+				console.log('累坏了');
+			},
+			wheelDemo() {
+				// console.log('#');
+				for (let i = 0; i < 100000; i++) {
+					console.log('#');
+				}
+				console.log('累坏了');
+			}
+		}
+	})
+</script>
+
+</html>

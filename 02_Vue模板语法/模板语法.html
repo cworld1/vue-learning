@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模板语法</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <link rel="icon" type="image/x-icon" href="../source/logo.png">
+</head>
+
+<body>
+    <!-- 
+        Vue模板语法有2大类：
+            1.插值语法：
+                功能：用于解析标签体内容。
+                写法：{{xxx}}，xxx是js表达式，且可以直接读取到data中的所有属性。
+            2.指令语法：
+                功能：用于解析标签（包括：标签属性、标签体内容、绑定事件.....）。
+                举例：v-bind:href="xxx" 或  简写为 :href="xxx"，xxx同样要写js表达式，
+                    且可以直接读取到data中的所有属性。
+                备注：Vue中有很多的指令，且形式都是：v-????，此处我们只是拿v-bind举个例子。
+     -->
+    <div id="root">
+        <h1>插值语法</h1>
+        <p>你好，{{name}}</p>
+        <hr />
+        <h1>指令语法</h1>
+        <a v-bind:href="pages.url" target="_blank">进入{{pages.name}}的主页</a>
+        <br />
+        <a :href="pages.url.toUpperCase()" target="_blank">（魔改版本）进入{{pages.name}}的主页</a>
+    </div>
+</body>
+
+<script type="text/javascript">
+    Vue.config.productionTip = false // 阻止 vue 在启动时生成生产提示。
+
+    // 创建 Vue 实例
+    new Vue({
+        el: '#root',
+        data: {
+            name: 'Jack',
+            pages: {
+                name: 'CWorld',
+                url: 'https://blog.cworld.top/',
+            }
+        }
+    })
+</script>
+
+</html>

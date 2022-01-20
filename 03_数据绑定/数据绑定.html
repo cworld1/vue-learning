@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据绑定</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <link rel="icon" type="image/x-icon" href="../source/logo.png">
+</head>
+
+<body>
+    <!-- 
+        Vue中有2种数据绑定的方式：
+            1.单向绑定(v-bind)：数据只能从data流向页面。
+            2.双向绑定(v-model)：数据不仅能从data流向页面，还可以从页面流向data。
+            备注：
+                1.双向绑定一般都应用在表单类元素上（如：input、select等）
+                2.v-model:value 可以简写为 v-model，因为v-model默认收集的就是value值。
+     -->
+    <div id="root">
+        <h1>数据绑定</h1>
+        <ul>
+            <li>
+                <label for="username">单向数据绑定(用户名称)：</label>
+                <input type="text" name="username" :value="name">
+            </li>
+            <li>
+                <label for="password">双向数据绑定(用户密码)：</label>
+                <input type="text" name="password" v-model:value="pwd">
+            </li>
+            <li>
+                <label for="password">单向数据绑定(用户密码)：</label>
+                <input type="text" name="password" v-model="pwd"> //此处为简写
+            </li>
+        </ul>
+        <h2 :x="name">测试行</h2>
+
+        <!-- 如下代码是错误的，因为v-model只能应用在表单类元素（输入类元素）上 -->
+        <!-- <h2 v-model:x="name">测试行</h2> -->
+    </div>
+</body>
+
+<script type="text/javascript">
+    Vue.config.productionTip = false // 阻止 vue 在启动时生成生产提示。
+
+    // 创建 Vue 实例
+    new Vue({
+        el: '#root',
+        data: {
+            name: 'CWorld',
+            pwd: '123456789'
+        }
+    })
+</script>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>回顾Object.defineproperty方法</title>
+    <link rel="icon" type="image/x-icon" href="../source/logo.png">
+</head>
+
+<body>
+    <!--
+        本部分暂时没有笔记
+     -->
+    <h1>东西都在控制台~</h1>
+</body>
+
+<script type="text/javascript">
+    let number = 18
+    let person = {
+        name: '张三',
+        sex: '男',
+        // age: number //方法一：直接声明数据(但赋值语句只能执行一次，不便于绑定数据响应)
+    }
+
+    Object.defineProperty(person, 'age', {
+        // valu: number, //方法二：定义数据(但赋值语句只能执行一次，不便于绑定数据响应)
+        enumerable: true, //控制属性是否可以枚举，默认值是false
+        writable: true, //控制属性是否可以被修改，默认值是false
+        configurable: true, //控制属性是否可以被删除，默认值是false
+
+        //当有人读取person的age属性时，get函数(getter)就会被调用，且返回值就是age的值
+        get() {
+            console.log('有人读取age属性了')
+            return number //方法三：绑定数据(单向从number到age绑定数据)
+        },
+
+        // //当有人修改person的age属性时，set函数(setter)就会被调用，且会收到修改的具体值
+        set(value) {
+            console.log('有人修改了age属性，且值是', value)
+            number = value //方法三++：绑定数据(反向从age到number绑定数据)
+        }
+    })
+
+    console.log(Object.keys(person))
+    // console.log(person)
+</script>
+
+</html>
