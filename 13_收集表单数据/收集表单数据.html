@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>收集表单数据</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <link rel="icon" type="image/x-icon" href="../source/logo.png">
+</head>
+
+<body>
+    <!--
+        收集表单数据：
+            若：<input type="text"/>，则v-model收集的是value值，用户输入的就是value值。
+            若：<input type="radio"/>，则v-model收集的是value值，且要给标签配置value值。
+            若：<input type="checkbox"/>
+                1.没有配置input的value属性，那么收集的就是checked（勾选 or 未勾选，是布尔值）
+                2.配置input的value属性:
+                    (1)v-model的初始值是非数组，那么收集的就是checked（勾选 or 未勾选，是布尔值）
+                    (2)v-model的初始值是数组，那么收集的的就是value组成的数组
+            备注：v-model的三个修饰符：
+                lazy：失去焦点再收集数据
+                number：输入字符串转为有效的数字
+                trim：输入首尾空格过滤
+     -->
+    <div id="root">
+        <form @submit.prevent="submitInfo">
+            <p>
+                <label for="username">账号: </label>
+                <input type="text" name="username" v-model.trim="userInfo.username">
+            </p>
+
+            <p>
+                <label for="password">密码: </label>
+                <input type="password" name="password" v-model="userInfo.password">
+            </p>
+
+            <p>
+                <label for="age">年龄: </label>
+                <input type="number" name="age" v-model.number="userInfo.age">
+            </p>
+
+            <p>性别:
+                <input type="radio" name="sex" value="male" v-model="userInfo.sex">男
+                <input type="radio" name="sex" value="female" v-model="userInfo.sex">女
+            </p>
+
+            <p>爱好:
+                <input type="checkbox" name="hobby" value="eat" v-model="userInfo.hobby">吃饭
+                <input type="checkbox" name="hobby" value="sleep" v-model="userInfo.hobby">睡觉
+                <input type="checkbox" name="hobby" value="playDoug" v-model="userInfo.hobby">打豆豆
+            </p>
+
+            <p>所属校区:
+                <select name="block" v-model="userInfo.city">
+                    <option value="">请选择校区</option>
+                    <option value="beibei">北碚校区</option>
+                    <option value="rongcang">荣昌校区</option>
+                </select>
+            </p>
+
+            <p>其他信息: <br />
+                <textarea name="others" rows="8" v-model.lazy="userInfo.other"></textarea>
+            </p>
+
+            <p>
+                <input type="checkbox" name="agree" v-model="userInfo.agree">
+                阅读并接受 <a href="https://swu.edu.cn">《用户协议》</a>
+            </p>
+
+            <p>
+                <button>提交</button>
+            </p>
+
+        </form>
+    </div>
+</body>
+
+<script type="text/javascript">
+    Vue.config.productionTip = false
+
+    const vm = new Vue({
+        el: '#root',
+        data: {
+            userInfo: {
+                username: '',
+                password: '',
+                age: '',
+                sex: 'male',
+                hobby: [],
+                city: '',
+                other: '',
+                agree: false
+            }
+        },
+        methods: {
+            submitInfo() {
+                console.log(JSON.stringify(this._data));
+                alert('提交成功! ')
+            }
+        },
+    })
+</script>
+
+</html>
