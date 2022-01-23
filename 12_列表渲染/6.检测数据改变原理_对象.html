@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>检测数据改变原理_对象</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <link rel="icon" type="image/x-icon" href="../source/logo.png">
+</head>
+
+<body>
+    <!--
+        没有笔记~
+     -->
+    <div id="root">
+        <h2>学校名称: {{name}}</h2>
+        <h2>学校地址: {{address}}</h2>
+    </div>
+</body>
+
+<script type="text/javascript">
+    Vue.config.productionTip = false
+
+    const vm = new Vue({
+        el: '#root',
+        data: {
+            name: '西南大学',
+            address: '重庆',
+            student: {
+                name: 'tom',
+                age: { rAge: 40, sAge: 29 },
+                friends: [
+                    { name: 'jerry', age: 35 },
+                    { name: 'jack', age: 32 }
+                ]
+            }
+        }
+    })
+</script>
+
+</html>

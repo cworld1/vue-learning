@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模拟一个数据监测</title>
+    <!-- <script type="text/javascript" src="../js/vue.js"></script> -->
+    <link rel="icon" type="image/x-icon" href="../source/logo.png">
+</head>
+
+<body>
+    <!--
+        没有笔记~
+     -->
+    <div id="root">
+        <h2>模拟一个数据监测</h2>
+    </div>
+</body>
+
+<script type="text/javascript">
+
+    let data = {
+        name: '西南大学',
+        address: '重庆',
+        a: {
+            b: 1
+        }
+    }
+
+    // 创建一个监视的实例对象，用于监视data中属性的变化
+    const obs = new Observer(data)
+    console.log(obs);
+
+    // 准备一个vm实例对象
+    vm._data = data = obs
+
+    function Observer(obj) {
+        //汇总对象中所有的属性形成一个数组
+        const keys = Object.keys(obj)
+        //遍历
+        keys.forEach((k) => {
+            Object.defineProperty(this, k, {
+                get() {
+                    return obj[k]
+                },
+                set(val) {
+                    console.log(`${k}被改了，我要去解析模板，生成虚拟DOM.....我要开始忙了`)
+                    obj[k] = val
+                }
+            })
+        })
+    }
+
+</script>
+
+</html>

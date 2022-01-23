@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>总结Vue数据监测</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <link rel="icon" type="image/x-icon" href="../source/logo.png">
+</head>
+
+<body>
+    <!--
+        Vue监视数据的原理：
+            1. vue会监视data中所有层次的数据。
+
+            2. 如何监测对象中的数据？
+                通过setter实现监视，且要在new Vue时就传入要监测的数据。
+                    (1).对象中后追加的属性，Vue默认不做响应式处理
+                    (2).如需给后添加的属性做响应式，请使用如下API：
+                        Vue.set(target，propertyName/index，value) 或 
+                        vm.$set(target，propertyName/index，value)
+
+            3. 如何监测数组中的数据？
+                通过包裹数组更新元素的方法实现，本质就是做了两件事：
+                    (1).调用原生对应的方法对数组进行更新。
+                    (2).重新解析模板，进而更新页面。
+
+            4.在Vue修改数组中的某个元素一定要用如下方法：
+                1.使用这些API:push()、pop()、shift()、unshift()、splice()、sort()、reverse()
+                2.Vue.set() 或 vm.$set()
+            
+            特别注意：Vue.set() 和 vm.$set() 不能给vm 或 vm的根数据对象 添加属性！！！
+     -->
+    <div id="root">
+        <h1>学生信息</h1>
+        <hr />
+
+        <h3>姓名: {{student.name}}</h3>
+        <hr />
+
+        <h3>年龄: {{student.age}}</h3>
+        <button @click="student.age++">年龄+1岁</button>
+        <hr />
+
+        <h3 v-if="student.sex">性别: {{student.sex}}</h3>
+        <button @click="addSex">添加性别属性，默认值: 男</button>
+        <button @click="student.sex = '未知'">修改性别</button>
+        <hr />
+
+        <h3>朋友们</h3>
+        <ul>
+            <li v-for="(f, index) in student.friends" :key="index">{{f.name}} -- {{f.age}}</li>
+        </ul>
+        <button @click.once="addFriend">在列表首位添加一个朋友</button>
+        <button @click="updateFirstFriendName">修改第一个朋友的名字为：张三</button>
+        <hr />
+
+        <h3>爱好</h3>
+        <ul>
+            <li v-for="(h, index) in student.hobby" :key="index">{{h}}</li>
+        </ul>
+        <button @click.once="addHobby">添加一个爱好</button>
+        <button @click="updateHobby">修改第一个爱好为: 打游戏</button>
+        <button @click="removeSleep">过滤掉爱好中的睡觉</button>
+    </div>
+</body>
+
+<script type="text/javascript">
+    Vue.config.productionTip = false
+
+    const vm = new Vue({
+        el: '#root',
+        data: {
+            student: {
+                name: 'tom',
+                age: 18,
+                friends: [
+                    { name: 'jerry', age: 35 },
+                    { name: 'tony', age: 36 }
+                ],
+                hobby: ['吃饭', '睡觉', '打豆豆']
+            }
+        },
+        methods: {
+            addSex() {
+                vm.$set(this.student, 'sex', '男')
+                Vue.set(this.student, 'sex', '男')
+            },
+            addFriend() {
+                this.student.friends.unshift({ name: 'jack', age: 70 })
+            },
+            updateFirstFriendName() {
+                this.student.friends[0].name = '张三'
+            },
+            addHobby() {
+                this.student.hobby.push('学习')
+            },
+            updateHobby() {
+                // this.student.hobby.splice(1, 1, '打游戏')
+                Vue.set(this.student.hobby, 1, '打游戏')
+            },
+            removeSleep() {
+                this.student.hobby = this.student.hobby.filter((h) => {
+                    return h !== '睡觉'
+                })
+            }
+        },
+    })
+</script>
+
+</html>
