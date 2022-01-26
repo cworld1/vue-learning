@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分析生命周期</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <link rel="icon" type="image/x-icon" href="../source/logo.png">
+</head>
+
+<body>
+    <!--
+        没有笔记~
+     -->
+    <div id="root" :x="n">
+        <!-- <h2 :style="{opacity: opacity;}">欢迎学习Vue</h2> -->
+        <h2 v-text="n"></h2>
+        <h2>当前的n值是: {{n}}</h2>
+        <button @click="add">点我n+1</button>
+        <button @click="bye">点我销毁vm</button>
+    </div>
+</body>
+
+<script type="text/javascript">
+    Vue.config.productionTip = false
+
+    const vm = new Vue({
+        // el: '#root',
+
+        // template 会将代码直接完全替换掉，甚至会  替换掉#root标签
+        // template: `
+        //     <div>
+        //         <!-- <h2 :style="{opacity: opacity;}">欢迎学习Vue</h2> -->
+        //         <h2>当前的n值是: {{n}}</h2>
+        //         <button @click="add">点我n+1</button>
+        //     </div>`,
+
+        data: {
+            n: 1
+        },
+        methods: {
+            add() {
+                console.log('Adding~');
+                this.n++
+            },
+            bye() {
+                console.log('Byebye~');
+                this.$destroy()
+            }
+        },
+        watch: {
+            n() {
+                console.log('n, 你变了');
+            }
+        },
+        beforeCreate() {
+            console.log('beforeCreate');
+            // console.log(this); // 没有data和methods载入
+            // debugger;
+        },
+        created() {
+            console.log('created');
+            // console.log(this);
+            // debugger;
+        },
+        beforeMount() {
+            console.log('beforeMount');
+            // debugger;
+        },
+        mounted() {
+            console.log('mounted');
+            // debugger;
+        },
+        beforeUpdate() {
+            console.log('beforeUpdate');
+            // console.log(this.n);
+            // debugger;
+        },
+        updated() {
+            console.log('updated');
+            // console.log(this.n);
+            // debugger;
+        },
+        beforeDestroy() {
+            console.log('beforeDestroy');
+            console.log('其实，我还记得n的值是', this.n, '。我帮你再加一吧');
+            this.add()
+        },
+        destroyed() {
+            console.log('destroyed');
+        },
+    })
+
+    console.log('这一步我开始声明了；el: "#root"');
+    vm.$mount('#root')
+</script>
+
+</html>
