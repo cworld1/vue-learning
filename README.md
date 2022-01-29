@@ -1,7 +1,7 @@
 # vue_test
 
 ## 学习笔记
-[点此查看](./note.md)
+[点此查看](./noteForAll.md)
 
 ## Project setup
 ```
