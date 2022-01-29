@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h2 @click="showName">学生姓名: {{ name }}</h2>
-    <h2>学生年龄: {{ sex }}</h2>
+    <h2 @click="showName">学校名称: {{ name }}</h2>
+    <h2>学校地址: {{ address }}</h2>
   </div>
 </template>
 
@@ -9,12 +9,11 @@
 // import { m, m2 } from "../mixin"; // 局部引入
 
 export default {
-  name: "Student",
+  name: "School",
   data() {
     return {
-      name: "张三",
-      sex: "男",
-      x: 666,
+      name: "西南大学",
+      address: "重庆",
     };
   },
   // mixins: [m, m2],
