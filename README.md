@@ -24,4 +24,4 @@
 
 ## License
 
-The GPL-3.0 License.
+The BSD-3-Clause License.
