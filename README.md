@@ -2,7 +2,7 @@
 
 ## 项目介绍
 
-[点此查看 (前往VUE_BASIC分支)](./vue-learning/tree/VUE_BASIC)
+[点此查看 (前往VUE_BASIC分支)](https://github.com/cworld1/vue-learning/tree/VUE_BASIC)
 
 ## 本分支学习笔记
 [点此查看 (共19个章节)](./noteForAll.md)
