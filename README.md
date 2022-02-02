@@ -1,9 +1,8 @@
 # Vue Learning
 
+[![GitHub Star](https://img.shields.io/github/stars/cworld1/vue-learning.svg?style=flat-square&label=Star&color=00ADD8&logo=github)](https://github.com/cworld1/vue-learning/)
 [![Release Version](https://img.shields.io/github/v/release/cworld1/vue-learning.svg?style=flat-square&label=Release&color=00ADD8&logo=github)](https://github.com/cworld1/vue-learning/releases/latest)
 [![GitHub license](https://img.shields.io/github/license/cworld1/vue-learning.svg?style=flat-square&label=License&color=00ADD8&logo=github)](https://github.com/cworld1/vue-learning/)
-[![GitHub Star](https://img.shields.io/github/stars/cworld1/vue-learning.svg?style=flat-square&label=Star&color=00ADD8&logo=github)](https://github.com/cworld1/vue-learning/)
-[![GitHub Fork](https://img.shields.io/github/forks/cworld1/vue-learning.svg?style=flat-square&label=Fork&color=00ADD8&logo=github)](https://github.com/cworld1/vue-learning/)
 
 这是一个关于 CWorld 在学习 Vue 时的一些代码记录的开源仓库。
 
