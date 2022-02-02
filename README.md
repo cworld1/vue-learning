@@ -6,12 +6,13 @@
 
 这是一个关于 CWorld 在学习 Vue 时的一些代码记录的开源仓库。
 
-## 项目介绍
+## 项目相关
 
-[点此查看 (前往VUE_BASIC分支)](https://github.com/cworld1/vue-learning/tree/VUE_BASIC)
+[项目介绍 (前往VUE_BASIC分支)](https://github.com/cworld1/vue-learning/tree/VUE_BASIC)
 
-## 本分支学习笔记
-[点此查看 (共19个章节)](./noteForAll.md)
+[项目衍生程序发布](https://github.com/cworld1/vue-learning/releases)
+
+[本分支学习笔记 (共19个章节)](./noteForAll.md)
 
 ## 项目安装&运行
 
@@ -41,4 +42,4 @@ npm run build
 
 ## License
 
-The GNU General Public License v3.0 .
+The BSD-3-Clause License.
