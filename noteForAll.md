@@ -261,7 +261,7 @@
    4. 提供数据：```pubsub.publish('xxx',数据)```
 
    5. 最好在beforeDestroy钩子中，用```PubSub.unsubscribe(pid)```去<span style="color:red">取消订阅。</span>
-	
+
 ## nextTick
 
 1. 语法：```this.$nextTick(回调函数)```
