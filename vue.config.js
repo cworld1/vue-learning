@@ -31,6 +31,6 @@ module.exports = {
                 // ws: true, // 用于支持websocket
                 changeOrigin: true // 用于控制请求头中的host值，是否需要与请求服务器相同
             }
-        }, */
+        } */
     }
 }
