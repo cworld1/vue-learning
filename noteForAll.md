@@ -688,7 +688,7 @@ module.exports = {
    ...mapMutations('countAbout',{increment:'JIA',decrement:'JIAN'}),
    ```
 
- ## 路由
+## 路由
 
 1. 理解： 一个路由（route）就是一组映射关系（key - value），多个路由需要路由器（router）进行管理。
 2. 前端路由：key是路径，value是组件。
