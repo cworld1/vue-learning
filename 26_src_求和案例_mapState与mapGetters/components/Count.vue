@@ -36,8 +36,8 @@ export default {
     magnifiedNum() { return this.$store.getters.magnifiedNum }, */
 
     // 借助mapState/mapGetters生成计算属性，从state中读取数据。（对象写法）
-    /* ...mapState({ number: "number", place: "place", subject: "subject" }),
-    ...mapGetters({ magnifiedNum: "magnifiedNum" }), */
+    ...mapState({ number: "number", place: "place", subject: "subject" }),
+    ...mapGetters({ magnifiedNum: "magnifiedNum" }),
 
     // 借助mapState/mapGetters生成计算属性，从state中读取数据。（数组写法）
     ...mapState(["number", "place", "subject"]),
