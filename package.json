@@ -18,7 +18,8 @@
     "nanoid": "^3.2.0",
     "pubsub-js": "^1.9.4",
     "vue": "^2.6.11",
-    "vue-resource": "^1.5.3"
+    "vue-resource": "^1.5.3",
+    "vuex": "^3.6.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.12.1",
