@@ -23,7 +23,7 @@
 <script>
 import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
 export default {
-  name: "Count",
+  name: "Counter",
   data() {
     return {
       select: 1,
@@ -31,13 +31,18 @@ export default {
   },
   computed: {
     // 借助mapState/mapGetters生成计算属性，从State/Getters中读取数据。（数组写法）
-    ...mapState(["number", "place", "subject", "persons"]),
-    ...mapGetters(["magnifiedNum"]),
+    ...mapState("counter", ["number"]),
+    ...mapState("personList", ["persons"]),
+    ...mapState(["place", "subject"]),
+    ...mapGetters("counter", ["magnifiedNum"]),
   },
   methods: {
     // 借助mapMutations/mapActions生成计算属性，方法中会调用commit/dispatch去联系Mutations/Actions。（对象写法）
-    ...mapMutations({ increament: "ADD", decreament: "CUT" }),
-    ...mapActions({ increamentOdd: "addOdd", increamentWait: "addWait" }),
+    ...mapMutations("counter", { increament: "ADD", decreament: "CUT" }),
+    ...mapActions("counter", {
+      increamentOdd: "addOdd",
+      increamentWait: "addWait",
+    }),
   },
 };
 </script>
