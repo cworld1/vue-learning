@@ -10,13 +10,9 @@
 
 [项目介绍 (前往 VUE_BASIC 分支)](https://github.com/cworld1/vue-learning/tree/VUE_BASIC)
 
-[本分支学习笔记汇总 (前往 noteForAll.md 文件)](./noteForAll.md) 共 19 章，21290 字符
+**本分支为实战开发Vue项目的前端分支。**
 
-本项目衍生程序：
-- Vue TodoList
-- Vue Router Demo
-
-[项目衍生程序发布 (前往项目发布页面)](https://github.com/cworld1/vue-learning/releases)
+[本分支学习笔记汇总 (前往 note 文件夹)](./noteForAll.md) 共 14 节，??? 字符
 
 ## 项目安装&运行
 
