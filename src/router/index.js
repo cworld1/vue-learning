@@ -28,6 +28,11 @@ const router = new VueRouter({
             path: "/register",
             component: Register
         },
+        // 重定向处理
+        {
+            path: "/",
+            redirect: "/home"
+        }
     ]
 })
 
