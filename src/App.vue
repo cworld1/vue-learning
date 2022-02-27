@@ -2,7 +2,7 @@
   <div>
     <Header></Header>
     <router-view></router-view>
-    <Footer></Footer>
+    <Footer v-if="showFooter"></Footer>
   </div>
 </template>
 
@@ -15,6 +15,12 @@ export default {
   components: {
     Header,
     Footer,
+  },
+  computed: {
+    showFooter() {
+      // return this.$toute.meta.showFooter;
+      return !["Login", "Register"].includes(this.$route.name);
+    },
   },
 };
 </script>
