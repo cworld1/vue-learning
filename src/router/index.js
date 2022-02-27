@@ -9,6 +9,18 @@ import Search from '@/pages/Search'
 import Login from '@/pages/Login'
 import Register from '@/pages/Register'
 
+// 修改 push 和 replace 方法
+let originPush = VueRouter.prototype.push;
+VueRouter.prototype.push = function push(location, resolve, reject) {
+    if (resolve || reject) return originPush.call(this, location, resolve, reject);
+    return originPush.call(this, location).catch(err => err);
+};
+let originReplace = VueRouter.prototype.replace;
+VueRouter.prototype.replace = function push(location, resolve, reject) {
+    if (resolve || reject) return originReplace.call(this, location, resolve, reject);
+    return originReplace.call(this, location).catch(err => err);
+}
+
 // 配置路由
 const router = new VueRouter({
     routes: [
