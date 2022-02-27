@@ -66,8 +66,7 @@ export default {
           name: "Search",
           query: { kewword: this.keyword },
         });
-      }
-      if (this.$route.name != "Home") {
+      } else {
         this.$router.push("/home");
       }
     },
