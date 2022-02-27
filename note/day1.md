@@ -175,6 +175,38 @@ node平台（并非语言）的路由分为 KV，即对应的 key 和 value
 > - $route：一般获取路由信息【路径、query、params等等】
 > - $router：一般进行编程式导航进行路由跳转 【pushlreplace】
 
+前往 /router/index.js 进行配置：
+
+```js
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+//使用插件
+Vue.use(VueRouter);
+
+// 引入路由组件
+import Home from '@/pages/Home'
+//对外暴露 VueRouter 类的实例
+const router = new VueRouter({
+    routes:[
+        {
+            name: 'Home',
+            path: '/home',
+            component: Home
+        }
+   ]
+})
+export default router
+```
+
+main.js   配置项填写相应 router
+
+$route:可以获取路由的信息或参数，如：
+
+- this.$route.name
+- this.$route.path
+- this.$route.params/query
+- this.$route.meta
+
 ### 路由的跳转
 
 路由的跳转就两种形式：
