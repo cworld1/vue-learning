@@ -13,20 +13,26 @@ import Register from '@/pages/Register'
 const router = new VueRouter({
     routes: [
         {
+            name: "Home",
             path: "/home",
             component: Home
         },
         {
+            name: "Search",
             path: "/search",
             component: Search
         },
         {
+            name: "Login",
             path: "/login",
-            component: Login
+            component: Login,
+            meta: { showFooter: false }
         },
         {
+            name: "Register",
             path: "/register",
-            component: Register
+            component: Register,
+            meta: { showFooter: false }
         },
         // 重定向处理
         {
