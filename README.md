@@ -1,8 +1,9 @@
 # Vue Learning
 
-[![GitHub Star](https://img.shields.io/github/stars/cworld1/vue-learning.svg?style=flat-square&label=Star&color=00ADD8&logo=github)](https://github.com/cworld1/vue-learning/)
-[![Release Version](https://img.shields.io/github/v/release/cworld1/vue-learning.svg?style=flat-square&label=Release&color=00ADD8&logo=github)](https://github.com/cworld1/vue-learning/releases/latest)
-[![GitHub license](https://img.shields.io/github/license/cworld1/vue-learning.svg?style=flat-square&label=License&color=00ADD8&logo=github)](https://github.com/cworld1/vue-learning/)
+[![GitHub stars](https://img.shields.io/github/stars/cworld1/vue-learning?style=flat-square)](https://github.com/cworld1/vue-learning/)
+[![GitHub commit activity](https://img.shields.io/github/commit-activity/y/cworld1/vue-learning?label=commits&style=flat-square)](https://github.com/cworld1/vue-learning/commits/)
+[![Release version](https://img.shields.io/github/v/release/cworld1/vue-learning?style=flat-square)](https://github.com/cworld1/vue-learning/releases/latest)
+[![GitHub license](https://img.shields.io/github/license/cworld1/vue-learning?style=flat-square)](https://github.com/cworld1/vue-learning/)
 
 这是一个关于 CWorld 在学习 Vue 时的一些代码记录的开源仓库。
 
@@ -10,9 +11,11 @@
 
 - [项目介绍 (前往 VUE_BASIC 分支)](https://github.com/cworld1/vue-learning/tree/VUE_BASIC)
 
-- [本分支学习笔记汇总 (前往 noteForAll.md 文件)](./noteForAll.md)
+### 分支介绍
 
-    共 27 章 15737 字符。
+**本分支为 Vue3 学习分支。**
+
+- [本分支学习笔记汇总 (前往 noteForAll.md 文件)](./noteForAll.md) 共 27 章 15737 字符。
 
 - [项目衍生程序发布 (前往项目发布页面)](https://github.com/cworld1/vue-learning/releases)
 
