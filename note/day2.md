@@ -168,7 +168,6 @@ export default store
 - 数组：`...xxx([xxx,xxx])`
 
 - 函数：
-
   ```js
   ...xxx({
       // 右侧需要的是一个函数，当使用这个计算属性的时候，右侧函数会立即执行一次
@@ -181,19 +180,60 @@ export default store
   })
   ```
 
-  
+### Vuex 模块化开发
 
+由于项目体积比较大，你向服务器发请求的接口过多，服务器返回的数据也会很多，如果还用以前的方式存储数据，会导致 vuex 中的 state 数据格式比较复杂。故采用 vuex 模块式管理数据。
 
+> Vuex 核心概念：state、actions、mutations、getters、modules
 
+正常编写 vuex：
 
+```js
+{
+    state：{
+         a: 1,
+         b: 2,
+         c: [],
+         d: {}
+    }
+}
+```
 
+vuex 模块式开发：
 
+```js
+{
+    state:{
+        home:{a:1},
+        search:{},
+        detail:{}
+    }
+}
+```
 
+## 商品分类组件展示动态数据
 
+以前基础课程的时候，发请求操作如下：在组件的 mounted 中书写 `axios.get` / `axios.post` 获取到数据存储到组件的 data 当中进行使用。
 
+写项目的时候，发请求在 mounted 或者 created 都可以：
+- mounted：模板已经变为真实 DOM（只不过没有数据，显示空白），因为 ajax 是异步，需要时间的。
+- created：稍微好那么一丢丢（不算啥）
 
+商品分类数据研究：
 
-
-
-
-
+```js
+[
+    {
+        id: 1,
+        categoryName: '图书',
+        categoryChild: [
+             {id: 3.14,
+              categoryName: '影像'，
+              categoryChild: [
+                   { id: 4,categoryName: '华为' }
+              ]
+             }
+        ]
+    }
+]
+```
