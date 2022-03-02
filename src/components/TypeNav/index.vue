@@ -13,10 +13,14 @@
         <a href="###">秒杀</a>
       </nav>
       <div class="sort">
-        <div class="all-sort-list2">
+        <div class="all-sort-list2" @click="goSearch">
           <div class="item" v-for="c1 in webData" :key="c1.categoryId">
             <h3>
-              <a href="">{{ c1.categoryName }}</a>
+              <a
+                :data-cateName="c1.categoryName"
+                :data-cate1Id="c1.categoryId"
+                >{{ c1.categoryName }}</a
+              >
             </h3>
             <div class="item-list clearfix">
               <div
@@ -26,11 +30,19 @@
               >
                 <dl class="fore">
                   <dt>
-                    <a href="">{{ c2.categoryName }}</a>
+                    <a
+                      :data-cateName="c2.categoryName"
+                      :data-cate2Id="c2.categoryId"
+                      >{{ c2.categoryName }}</a
+                    >
                   </dt>
                   <dd>
-                    <em v-for="c3 in c2.categoryChild" :key="c3.categoryName">
-                      <a href="">{{ c3.categoryName }}</a>
+                    <em v-for="c3 in c2.categoryChild" :key="c3.categoryId">
+                      <a
+                        :data-cateName="c3.categoryName"
+                        :data-cate3Id="c3.categoryId"
+                        >{{ c3.categoryName }}</a
+                      >
                     </em>
                   </dd>
                 </dl>
@@ -45,6 +57,7 @@
 
 <script>
 import { mapState } from "vuex";
+import _ from "lodash";
 export default {
   name: "TypeNav",
   // 组件挂载完毕：向服务器发送请求
@@ -55,6 +68,28 @@ export default {
     ...mapState({
       webData: (state) => state.home.typeNavData,
     }),
+  },
+  methods: {
+    goSearch(event) {
+      // 获取相关节点并判断跳转
+      let element = event.target;
+      let { catename, cate1id, cate2id, cate3id } = element.dataset;
+      if (catename) {
+        // 整理路由跳转参数
+        let query = { cateNme: catename };
+        if (cate1id) {
+          query.cate1Id = cate1id;
+        } else if (cate2id) {
+          query.cate2Id = cate2id;
+        } else if (cate3id) {
+          query.cate3Id = cate3id;
+        }
+        this.$router.push({
+          name: "Search",
+          query,
+        });
+      }
+    },
   },
 };
 </script>
