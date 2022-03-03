@@ -1,5 +1,5 @@
 <template>
-  <div>搜索</div>
+  <typeNav />
 </template>
 
 <script>
