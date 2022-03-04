@@ -32,5 +32,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.list-container {
+  margin-bottom: 60px;
+}
 </style>
