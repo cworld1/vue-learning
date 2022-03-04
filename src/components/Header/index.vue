@@ -61,11 +61,17 @@ export default {
   },
   methods: {
     goSearch() {
+      // 如果内容不为空，则跳转到搜索，否则回首页
       if (this.keyword.trim()) {
-        this.$router.push({
+        let location = {
           name: "Search",
-          query: { kewword: this.keyword },
-        });
+          params: { keyword: this.keyword.trim() || undefined },
+        };
+        // 如果地址已经携带了 query 参数，则继续继承
+        if (this.$route.query) {
+          location.query = this.$route.query;
+        }
+        this.$router.push(location);
       } else {
         this.$router.push("/home");
       }
