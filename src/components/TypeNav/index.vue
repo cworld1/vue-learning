@@ -1,7 +1,50 @@
 <template>
   <div class="type-nav">
     <div class="container">
-      <h2 class="all">全部商品分类</h2>
+      <div @mouseenter="enterShow" @mouseleave="leaveShow">
+        <h2 class="all">全部商品分类</h2>
+        <transition name="sort">
+          <div class="sort" v-show="show">
+            <div class="all-sort-list2" @click="goSearch">
+              <div class="item" v-for="c1 in webData" :key="c1.categoryId">
+                <h3>
+                  <a
+                    :data-cateName="c1.categoryName"
+                    :data-cate1Id="c1.categoryId"
+                    >{{ c1.categoryName }}</a
+                  >
+                </h3>
+                <div class="item-list clearfix">
+                  <div
+                    class="subitem"
+                    v-for="c2 in c1.categoryChild"
+                    :key="c2.categoryId"
+                  >
+                    <dl class="fore">
+                      <dt>
+                        <a
+                          :data-cateName="c2.categoryName"
+                          :data-cate2Id="c2.categoryId"
+                          >{{ c2.categoryName }}</a
+                        >
+                      </dt>
+                      <dd>
+                        <em v-for="c3 in c2.categoryChild" :key="c3.categoryId">
+                          <a
+                            :data-cateName="c3.categoryName"
+                            :data-cate3Id="c3.categoryId"
+                            >{{ c3.categoryName }}</a
+                          >
+                        </em>
+                      </dd>
+                    </dl>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </transition>
+      </div>
       <nav class="nav">
         <a href="###">服装城</a>
         <a href="###">美妆馆</a>
@@ -12,57 +55,24 @@
         <a href="###">有趣</a>
         <a href="###">秒杀</a>
       </nav>
-      <div class="sort">
-        <div class="all-sort-list2" @click="goSearch">
-          <div class="item" v-for="c1 in webData" :key="c1.categoryId">
-            <h3>
-              <a
-                :data-cateName="c1.categoryName"
-                :data-cate1Id="c1.categoryId"
-                >{{ c1.categoryName }}</a
-              >
-            </h3>
-            <div class="item-list clearfix">
-              <div
-                class="subitem"
-                v-for="c2 in c1.categoryChild"
-                :key="c2.categoryId"
-              >
-                <dl class="fore">
-                  <dt>
-                    <a
-                      :data-cateName="c2.categoryName"
-                      :data-cate2Id="c2.categoryId"
-                      >{{ c2.categoryName }}</a
-                    >
-                  </dt>
-                  <dd>
-                    <em v-for="c3 in c2.categoryChild" :key="c3.categoryId">
-                      <a
-                        :data-cateName="c3.categoryName"
-                        :data-cate3Id="c3.categoryId"
-                        >{{ c3.categoryName }}</a
-                      >
-                    </em>
-                  </dd>
-                </dl>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
-import _ from "lodash";
 export default {
   name: "TypeNav",
-  // 组件挂载完毕：向服务器发送请求
+  data() {
+    return {
+      show: true,
+    };
+  },
   mounted() {
-    this.$store.dispatch("getTypeNav");
+    // 组件挂载完毕：判断是否阻止显示
+    if (this.$route.name != "Home") {
+      this.show = false;
+    }
   },
   computed: {
     ...mapState({
@@ -70,13 +80,14 @@ export default {
     }),
   },
   methods: {
+    // 获取节点参数转为query参数并跳转搜索页面
     goSearch(event) {
       // 获取相关节点并判断跳转
       let element = event.target;
       let { catename, cate1id, cate2id, cate3id } = element.dataset;
       if (catename) {
         // 整理路由跳转参数
-        let query = { cateNme: catename };
+        let query = { cateName: catename };
         if (cate1id) {
           query.cate1Id = cate1id;
         } else if (cate2id) {
@@ -84,10 +95,23 @@ export default {
         } else if (cate3id) {
           query.cate3Id = cate3id;
         }
-        this.$router.push({
-          name: "Search",
-          query,
-        });
+        let location = { name: "Search", query };
+        // 如果地址已经携带了 params 参数，则继续继承
+        if (this.$route.params) {
+          location.params = this.$route.params;
+        }
+        this.$router.push(location);
+      }
+    },
+    // 为折叠效果下的商品分类列表进行触发性展示
+    enterShow() {
+      if (this.$route.name != "Home") {
+        this.show = true;
+      }
+    },
+    leaveShow() {
+      if (this.$route.name != "Home") {
+        this.show = false;
       }
     },
   },
@@ -97,6 +121,10 @@ export default {
 <style lang="less" scoped>
 .type-nav {
   border-bottom: 2px solid #e1251b;
+
+  a {
+    cursor: pointer;
+  }
 
   .container {
     width: 1200px;
@@ -130,9 +158,9 @@ export default {
       left: 0;
       top: 45px;
       width: 210px;
-      height: 461px;
+      height: 510px;
       position: absolute;
-      background: #fafafa;
+      background: #ebebeb;
       z-index: 999;
 
       .all-sort-list2 {
@@ -213,6 +241,22 @@ export default {
           }
         }
       }
+    }
+    // 过度动画的样式
+    .sort-enter-active,
+    .sort-leave-active {
+      transition: all 0.3s ease-in-out;
+      overflow: hidden;
+    }
+    .sort-enter,
+    .sort-leave-to {
+      height: 0px;
+      opacity: 0.8;
+    }
+    .sort-enter-to,
+    .sort-leave {
+      height: 510px;
+      opacity: 2;
     }
   }
 }
