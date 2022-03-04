@@ -22,6 +22,10 @@ export default {
       return !["Login", "Register"].includes(this.$route.name);
     },
   },
+  mounted() {
+    // 派发一个 action，获取商品分类的数据
+    this.$store.dispatch("getTypeNav");
+  },
 };
 </script>
 
