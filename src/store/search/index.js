@@ -1,12 +1,12 @@
 // search 模块下的 store 仓库
-const state = {}
-const mutations = {}
-const actions = {}
-const getters = {}
+const state = {};
+const mutations = {};
+const actions = {};
+const getters = {};
 
-export default ({
+export default {
   state,
   mutations,
   actions,
-  getters
-})
+  getters,
+};

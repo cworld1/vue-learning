@@ -1,30 +1,30 @@
 // home 模块下的 store 仓库
 
 // 引入商品分类导航信息获取 api
-import { reqTypeNav } from '@/api'
+import { reqTypeNav } from "@/api";
 
 const state = {
-  typeNavData: []
-}
+  typeNavData: [],
+};
 const mutations = {
   ADDTYPENAV(state, data) {
-    state.typeNavData = data
-  }
-}
+    state.typeNavData = data;
+  },
+};
 const actions = {
   // 向服务器发请求
   async getTypeNav({ commit }) {
-    let result = await reqTypeNav()
+    let result = await reqTypeNav();
     if (result.code == 200) {
-      commit("ADDTYPENAV", result.data)
+      commit("ADDTYPENAV", result.data);
     }
-  }
-}
-const getters = {}
+  },
+};
+const getters = {};
 
-export default ({
+export default {
   state,
   mutations,
   actions,
-  getters
-})
+  getters,
+};
