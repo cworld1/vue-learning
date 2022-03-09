@@ -5,7 +5,7 @@ import NProgress from "nprogress";
 import "./nprogress.css";
 
 const request = axios.create({
-  baseURL: "/api/", // 基础路径
+  baseURL: "/api", // 基础路径
   timeout: 5000, // 请求超时时间
 });
 
@@ -26,7 +26,7 @@ request.interceptors.response.use(
     return res.data;
   },
   (error) => {
-    return Promise.reject(new Error("fail"));
+    return Promise.reject(new Error("fail: ", error));
   } // 失败
 );
 0;
