@@ -8,6 +8,9 @@ import store from "./store";
 // 引入商品分类导航组件（商品分类导航）
 import TypeNav from "./components/TypeNav";
 
+// 引入 MockServe 模拟数据
+import "./mock/mockServe";
+
 // 注册全局组件（参数一：全局组件名称；参数二：哪一个组件）
 Vue.component(TypeNav.name, TypeNav);
 
