@@ -100,8 +100,17 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   name: "ListContainer",
+  computed: {
+    ...mapState({
+      bannerData: (state) => state.home.bannerData,
+    }),
+  },
+  mounted() {
+    this.$store.dispatch("getBannerList");
+  },
 };
 </script>
 
