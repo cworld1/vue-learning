@@ -5,8 +5,12 @@
         <!--banner轮播-->
         <div class="swiper-container" id="mySwiper">
           <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <img src="./images/banner1.jpg" />
+            <div
+              class="swiper-slide"
+              v-for="carousel in bannerData"
+              :key="carousel.id"
+            >
+              <img :src="carousel.imgUrl" />
             </div>
             <!-- <div class="swiper-slide">
               <img src="./images/banner2.jpg" />
@@ -100,6 +104,7 @@
 </template>
 
 <script>
+import Swiper from "swiper";
 import { mapState } from "vuex";
 export default {
   name: "ListContainer",
@@ -107,6 +112,29 @@ export default {
     ...mapState({
       bannerData: (state) => state.home.bannerData,
     }),
+  },
+  watch: {
+    bannerData: {
+      handler() {
+        // 解决异步问题
+        this.$nextTick(() => {
+          new Swiper(".swiper-container", {
+            direction: "horizontal", // 布局方向：horizontal / vertical
+            loop: true, // 循环
+            pagination: {
+              // 分页功能
+              el: ".swiper-pagination",
+              clickable: true,
+            },
+            navigation: {
+              // 导航箭头
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            },
+          });
+        });
+      },
+    },
   },
   mounted() {
     this.$store.dispatch("getBannerList");
