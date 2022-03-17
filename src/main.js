@@ -2,6 +2,8 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 
+import "swiper/css/swiper.min.css"
+
 // 引入由 Vuex 构建的 store 状态管理模块
 import store from "./store";
 
