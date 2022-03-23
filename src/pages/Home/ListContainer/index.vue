@@ -3,7 +3,7 @@
     <div class="sortList clearfix">
       <div class="center">
         <!--banner轮播-->
-        <div class="swiper-container" id="mySwiper">
+        <div class="swiper-container" ref="mySwiper">
           <div class="swiper-wrapper">
             <div
               class="swiper-slide"
@@ -118,7 +118,7 @@ export default {
       handler() {
         // 解决异步问题
         this.$nextTick(() => {
-          new Swiper(".swiper-container", {
+          new Swiper(this.$refs.mySwiper, {
             direction: "horizontal", // 布局方向：horizontal / vertical
             loop: true, // 循环
             pagination: {
