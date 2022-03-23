@@ -6,7 +6,7 @@
         <transition name="sort">
           <div class="sort" v-show="show">
             <div class="all-sort-list2" @click="goSearch">
-              <div class="item" v-for="c1 in webData" :key="c1.categoryId">
+              <div class="item" v-for="c1 in typeNavData" :key="c1.categoryId">
                 <h3>
                   <a
                     :data-cateName="c1.categoryName"
@@ -76,7 +76,7 @@ export default {
   },
   computed: {
     ...mapState({
-      webData: (state) => state.home.typeNavData,
+      typeNavData: (state) => state.home.typeNavData,
     }),
   },
   methods: {
@@ -158,7 +158,7 @@ export default {
       left: 0;
       top: 45px;
       width: 210px;
-      height: 510px;
+      height: auto;
       position: absolute;
       background: #ebebeb;
       z-index: 999;
