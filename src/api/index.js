@@ -10,3 +10,7 @@ export const reqGetTypeNavList = () =>
 // 首页广告轮播
 // /mock/product/getBaseCategoryList get 无参数
 export const reqGetBannerList = () => mockRequests.get("/banner");
+
+// 首页 Floor 组件
+// /mock/product/getBaseCategoryList get 无参数
+export const reqGetFloorList = () => mockRequests.get("/floor");
