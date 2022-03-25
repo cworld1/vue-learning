@@ -11,11 +11,7 @@
     <!-- 猜你喜欢 -->
     <Like />
     <!--楼层-->
-    <Floor
-      v-for="floor in floorData"
-      :key="floor.id"
-      :singleFloorData="floor"
-    />
+    <Floor v-for="floor in floorData" :key="floor.id" :floor="floor" />
     <!--商标-->
     <Brand />
   </div>
@@ -41,6 +37,9 @@ export default {
   mounted() {
     // 派发 action，获取 Floor 组件的数据
     this.$store.dispatch("getFloorList");
+    /* this.$nextTick(() => {
+      console.log("@", this.floorData);
+    }); */
   },
 };
 </script>
